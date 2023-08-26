@@ -18,14 +18,19 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     protected $table = 'users';
+
     protected $fillable = [
         'name',
         'email',
+        'nrp',
         'address',
         'date_of_birth',
         'age',
         'gender',
         'password',
+        'role',
     ];
 
     /**
@@ -50,7 +55,7 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
 
-        $url = 'https://klinikdralfred.nocturnailed.tech/reset-password?token=' . $token;
+        $url = '/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }

@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->integer('nrp')->default(0);
             $table->string('address')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('age')->nullable();
             $table->string('gender')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('role')->default(0);
+            $table->string('role')->default('karyawan');
             $table->rememberToken();
             $table->timestamps();
         });

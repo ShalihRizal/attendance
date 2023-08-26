@@ -15,6 +15,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => 'required',
             'email' => 'required',
+            'nrp' => 'required',
             'address' => 'required',
             'date_of_birth' => 'required',
             'age' => 'required',
@@ -36,6 +37,7 @@ class AuthController extends Controller
         $User = [
             'name' => $request->name,
             'email' => $request->email,
+            'nrp' => $request->nrp,
             'address' => $request->address,
             'date_of_birth' => $request->date_of_birth,
             'age' => $request->age,
@@ -50,28 +52,32 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'address' => 'required',
-            'date_of_birth' => 'required',
-            'age' => 'required',
-            'gender' => 'required',
-            'password' => 'required|string|min:8'
-        ]);
+        // $validator = Validator::make($request->all(),[
+        //     `'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'nrp' => 'required',
+        //     'address' => 'required',
+        //     'date_of_birth' => 'required',
+        //     'age' => 'required',
+        //     'gender' => 'required',
+        //     'password' => 'required|string|min:8',
+        //     'role' => 'required'`
+        // ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors());
-        }
+        // if($validator->fails()){
+        //     return response()->json($validator->errors());
+        // }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'nrp' => $request->nrp,
             'address' => $request->address,
             'date_of_birth' => $request->date_of_birth,
             'age' => $request->age,
             'gender' => $request->gender,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
          ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;

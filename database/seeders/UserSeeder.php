@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             [
                 [
                     'id'           => '1',
-                    'name'         => 'Rizal Pangandaran',
+                    'name'         => 'Shalih',
+                    'nrp'         => '260102',
                     'email'         => 'rizalpangandaran@gmail.com',
                     'password'     => Hash::make('12345678'),
                     'role'            => '1',
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
                 [
                     'id'           => '2',
                     'name'         => 'Shalih Rizal',
+                    'nrp'         => '260102',
                     'email'         => 'shalihrizal@gmail.com',
                     'password'     => Hash::make('12345678'),
                     'role'            => '1',
